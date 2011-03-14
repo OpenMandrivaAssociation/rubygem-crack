@@ -1,45 +1,54 @@
-%define oname crack
+# Generated from crack-0.1.8.gem by gem2rpm5 -*- rpm-spec -*-          
+%define	rbname	crack
 
-Summary:    Really simple JSON and XML parsing, ripped from Merb and Rails
-Name:       rubygem-%{oname}
-Version:    0.1.8
-Release:    %mkrel 1
-Group:      Development/Ruby
-License:    MIT
-URL:        http://github.com/jnunemaker/crack
-Source0:    http://rubygems.org/gems/%{oname}-%{version}.gem
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
-Requires:   rubygems
-BuildRequires: rubygems
-BuildArch:  noarch
-Provides:   rubygem(%{oname}) = %{version}
+Summary:	Really simple JSON and XML parsing, ripped from Merb and Rails
+Name:		rubygem-%{rbname}
+
+Version:	0.1.8
+Release:	1
+Group:		Development/Ruby
+License:	MIT
+URL:		http://github.com/jnunemaker/crack
+Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
+BuildRequires:	rubygems 
+BuildArch:	noarch
 
 %description
 Really simple JSON and XML parsing, ripped from Merb and Rails.
 
+%package	doc
+Summary:	Documentation for %{name}
+Group:		Books/Computer books
+Requires:	%{name} = %{EVRD}
+
+%description	doc
+Documents, RDoc & RI documentation for %{name}.
+
 %prep
+%setup -q
 
 %build
+%gem_build -f test
 
 %install
-rm -rf %buildroot
-mkdir -p %{buildroot}%{ruby_gemdir}
-gem install --local --install-dir %{buildroot}%{ruby_gemdir} \
-            --force --rdoc %{SOURCE0}
-rm %{buildroot}%{ruby_gemdir}/gems/%{oname}-%{version}/{.gitignore,crack.gemspec}
+%gem_install
 
 %clean
-rm -rf %buildroot
+rm -rf %{buildroot}
 
 %files
-%defattr(-, root, root, -)
-%dir %{ruby_gemdir}/gems/%{oname}-%{version}/
-%{ruby_gemdir}/gems/%{oname}-%{version}/lib/
-%{ruby_gemdir}/gems/%{oname}-%{version}/test/
-%doc %{ruby_gemdir}/doc/%{oname}-%{version}
-%doc %{ruby_gemdir}/gems/%{oname}-%{version}/History
-%doc %{ruby_gemdir}/gems/%{oname}-%{version}/LICENSE
-%doc %{ruby_gemdir}/gems/%{oname}-%{version}/Rakefile
-%doc %{ruby_gemdir}/gems/%{oname}-%{version}/README.rdoc
-%{ruby_gemdir}/cache/%{oname}-%{version}.gem
-%{ruby_gemdir}/specifications/%{oname}-%{version}.gemspec
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/crack
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/crack/*.rb
+%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
+
+%files doc
+%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/*.rdoc
+%doc %{ruby_gemdir}/gems/%{rbname}-%{version}/LICENSE
+%doc %{ruby_gemdir}/doc/%{rbname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test
+%{ruby_gemdir}/gems/%{rbname}-%{version}/test/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test/data
+%{ruby_gemdir}/gems/%{rbname}-%{version}/test/data/*.json
