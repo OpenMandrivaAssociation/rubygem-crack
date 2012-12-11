@@ -52,3 +52,14 @@ rm -rf %{buildroot}
 %{ruby_gemdir}/gems/%{rbname}-%{version}/test/*.rb
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test/data
 %{ruby_gemdir}/gems/%{rbname}-%{version}/test/data/*.json
+
+
+%changelog
+* Mon Mar 14 2011 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.1.8-2
++ Revision: 644662
+- regenerate spec with gem2rpm5
+
+* Sat Oct 09 2010 Rémy Clouard <shikamaru@mandriva.org> 0.1.8-1mdv2011.0
++ Revision: 584447
+- import rubygem-crack
+
