@@ -8,7 +8,7 @@ Version:	0.1.8
 Release:	3
 Group:		Development/Ruby
 License:	MIT
-URL:		http://github.com/jnunemaker/crack
+URL:		https://github.com/jnunemaker/crack
 Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
 BuildRequires:	rubygems 
 BuildArch:	noarch
